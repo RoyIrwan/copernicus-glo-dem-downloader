@@ -6,9 +6,18 @@ import os
 from pathlib import Path
 
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtWidgets import QAction, QMessageBox
 
 PLUGIN_DIR = os.path.dirname(__file__)
+
+BOTO3_INSTALL_MESSAGE = (
+    "This plugin requires the 'boto3' Python package, which is not installed in "
+    "QGIS's Python environment.\n\n"
+    "Install it by running this in the OSGeo4W Shell (Windows) or a terminal where "
+    "QGIS's Python is on PATH:\n\n"
+    "    python -m pip install boto3\n\n"
+    "Then restart QGIS."
+)
 
 
 class CopernicusGloDemDownloaderPlugin:
@@ -35,6 +44,12 @@ class CopernicusGloDemDownloaderPlugin:
         self.actions = []
 
     def run(self) -> None:
+        try:
+            import boto3  # noqa: F401
+        except ImportError:
+            QMessageBox.critical(self.iface.mainWindow(), "Missing dependency", BOTO3_INSTALL_MESSAGE)
+            return
+
         from .dialog import CopernicusGloDemDownloaderDialog
 
         cache_dir = Path.home() / ".copernicus_glo_dem_downloader" / "cache"

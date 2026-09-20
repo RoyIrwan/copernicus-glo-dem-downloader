@@ -5,12 +5,13 @@ A QGIS plugin for browsing and downloading Copernicus Digital Elevation Model (G
 ## Features
 
 - **No credentials required** — GLO-30/GLO-90 are public AWS S3 buckets
-- **Tile index preview** — toggle a dataset on to see its 1°×1° tile grid drawn on the map before downloading
-- **Use current map extent** — one click to set the download bounding box from the active canvas view
+- **Tile index preview** — a shared 1°×1° tile grid layer (same for both datasets) you can load once and select tiles from
+- **Two ways to define the download area** — select exact tiles in the index layer, or use the current map canvas extent
 - **Mask layer selection** — DEM (always included), EDM, FLM, HEM, WBM
 - **Background download** — runs on a `QgsTask` with a progress bar and cancel button; QGIS stays responsive
 - **Resumable** — re-running a download with the same output folder skips files already downloaded
 - **Optional auto-load** — off by default; when enabled, downloaded rasters are added to the map inside a `GLO-30`/`GLO-90` group layer
+- **Safety limit** — downloads are capped at 500 tiles per run; there's no way to accidentally trigger a full-dataset download
 
 ## Data Source
 
@@ -52,15 +53,18 @@ Copy (or symlink) the `copernicus_glo_dem_downloader/` folder into your QGIS pro
 
 Then enable it in QGIS via **Plugins → Manage and Install Plugins → Installed**.
 
+If `boto3` isn't installed, the plugin still loads and appears in the toolbar/menu, but clicking it shows a dialog with the exact command to run instead of failing silently.
+
 ## Usage
 
 1. Open the plugin from the toolbar icon or **Raster → Copernicus GLO DEM Downloader**.
-2. Check **GLO-30** and/or **GLO-90** — the tile index grid for the enabled dataset(s) is drawn on the map.
-3. Optionally click **Use Current Map Extent** to limit the download to your current view, or leave it empty for the full dataset (not recommended without a very large disk).
-4. Select which mask layers to download (DEM is always included).
-5. Choose an output folder.
-6. Optionally enable **Auto-load downloaded rasters into a group layer**.
-7. Click **Download**. Progress is shown in the dialog; click **Cancel** to stop.
+2. On first open, you'll be asked whether to load the tile index grid — say yes to see the 1°×1° tile boundaries on the map (this is the same grid for both datasets, fetched once).
+3. Check **GLO-30** and/or **GLO-90** to pick which dataset(s) to download.
+4. Define the area to download — either select tile features in the index layer, or just pan/zoom the map — then click **Use Extent (selected tiles or map view)**. A download always requires an area; there's no "download everything" option, and areas matching more than 500 tiles are rejected.
+5. Select which mask layers to download (DEM is always included).
+6. Choose an output folder — the exact per-dataset subfolder(s) that will be created are shown live under **Will save to**.
+7. Optionally enable **Auto-load downloaded rasters into a group layer**.
+8. Click **Download**. Progress and status are shown in the dialog; click **Cancel** to stop.
 
 ## Development
 
