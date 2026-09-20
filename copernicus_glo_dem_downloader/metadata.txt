@@ -1,0 +1,22 @@
+[general]
+name=Copernicus GLO DEM Downloader
+qgisMinimumVersion=3.22
+description=Downloads Copernicus GLO-30/GLO-90 DEM tiles from the public AWS Open Data buckets, with tile index preview and optional auto-load into the map.
+version=0.1.0
+author=Roy Irwan
+email=roy.irwan@rajawaliinternational.id
+
+about=Browse and download Copernicus Digital Elevation Model (GLO-30, GLO-90) tiles directly from the public, anonymous-access AWS Open Data buckets. Preview the tile grid for the current map extent before downloading, select which mask layers to include (DEM, EDM, FLM, HEM, WBM), and optionally auto-load the downloaded rasters into a group layer.
+
+tracker=https://github.com/
+repository=https://github.com/
+tags=dem,elevation,copernicus,glo-30,glo-90,aws,open data,terrain
+
+homepage=https://github.com/
+category=Raster
+icon=icon.png
+experimental=True
+deprecated=False
+server=False
+
+hasProcessingProvider=no

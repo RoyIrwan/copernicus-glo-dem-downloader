@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Compiled Qt resources (regenerate with pyrcc5 from resources.qrc)
+resources_rc.py
+
+# Downloaded DEM tiles and resume state (runtime output, not source)
+CopDEM_*/
+Copernicus_DSM_COG_*/
+download_state.json
+tile_list_*.json
+
+.claude/
+.mcp.json
