@@ -19,3 +19,9 @@ tile_list_*.json
 
 .claude/
 .mcp.json
+
+# Maintainer-only notes, not part of the plugin or its docs
+PUBLISHING.md
+
+# Packaged plugin build artifact (regenerate from copernicus_glo_dem_downloader/ before each release)
+*.zip
