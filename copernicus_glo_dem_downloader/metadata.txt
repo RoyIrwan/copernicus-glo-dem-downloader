@@ -6,7 +6,7 @@ version=0.1.0
 author=Roy Irwan
 email=roy.irwan@rajawaliinternational.id
 
-about=Browse and download Copernicus Digital Elevation Model (GLO-30, GLO-90) tiles directly from the public, anonymous-access AWS Open Data buckets. Preview the tile grid for the current map extent before downloading, select which mask layers to include (DEM, EDM, FLM, HEM, WBM), and optionally auto-load the downloaded rasters into a group layer.
+about=Browse and download Copernicus Digital Elevation Model (GLO-30, GLO-90) tiles directly from the public, anonymous-access AWS Open Data buckets. Load a 1x1 degree tile index grid to see and select exactly which tiles to fetch, or use the current map extent instead, select which mask layers to include (DEM, EDM, FLM, HEM, WBM), and optionally auto-load the downloaded rasters into a group layer. Downloads are capped at 500 tiles per run to prevent accidentally fetching the entire dataset.
 
 tracker=https://github.com/RoyIrwan/copernicus-glo-dem-downloader/issues
 repository=https://github.com/RoyIrwan/copernicus-glo-dem-downloader
